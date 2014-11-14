@@ -1,7 +1,7 @@
 package algrithom
 
 import (
-	"log"
+	// "log"
 	"sort"
 )
 
@@ -44,24 +44,16 @@ func (a nums) Less(i, j int) bool { return a[i] < a[j] }
 // 找出所有和为0的整数对的数量
 // 先sort，再用bin-search方法寻找和为0的整数对
 func TwoSumFast(na []int32) (cnt int32) {
-	log.Println("before sort:", na)
+	// log.Println("before sort:", na)
 	sort.Sort(nums(na))
-	log.Println("after sort:", na)
+	// log.Println("after sort:", na)
 
 	for i, v := range na {
 		idx := sort.Search(len(na), func(i int) bool { return na[i] >= -v })
-		log.Printf("na[%v]=%v, idx=%v", i, v, idx)
+		// log.Printf("na[%v]=%v, idx=%v", i, v, idx)
 		if idx != len(na) && i < idx && na[idx] == -v {
 			// log.Printf("lv=%v[%v], rv=%v[%v]", v, i, na[idx], idx)
 			cnt++
-			for {
-				idx++
-				if idx < len(na) && na[idx] == -v {
-					cnt++
-					continue
-				}
-				break
-			}
 		}
 	}
 
@@ -74,25 +66,12 @@ func ThreeSumFast(na []int32) (cnt int32) {
 	// log.Println("after sort:", na)
 
 	for i, vi := range na {
-		for j, vj := range na[i:] {
+		for j, vj := range na[i+1:] {
 			v := vi + vj
 			idx := sort.Search(len(na), func(i int) bool { return na[i] >= -v })
-			if idx != len(na) && func(a, b int) int {
-				if a > b {
-					return a
-				}
-				return b
-			}(i, j) < idx && na[idx] == -v {
-				// log.Printf("lv=%v[%v], rv=%v[%v]", v, i, na[idx], idx)
+			if idx != len(na) && i+1+j < idx && na[idx] == -v {
+				// log.Printf("a[%v]+a[%v]+a[%v]=0 ==> %v+%v+%v=0", i, i+1+j, idx, vi, vj, na[idx])
 				cnt++
-				for {
-					idx++
-					if idx < len(na) && na[idx] == -v {
-						cnt++
-						continue
-					}
-					break
-				}
 			}
 		}
 	}
