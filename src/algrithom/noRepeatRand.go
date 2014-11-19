@@ -10,7 +10,7 @@ import (
 )
 
 // 暴力方法
-func forceMethod(N int) {
+func ForceMethod(N int) {
 	tb := time.Now()
 	na := make([]int, 0, N)
 Loop:
@@ -31,7 +31,7 @@ Loop:
 }
 
 // 预先生成范围内所有数存在array中，随机生成位置数，每获得一个数后将其删除
-func arrayMethod(N int) {
+func ArrayMethod(N int) {
 	tb := time.Now()
 	na := make([]int, 0, N)
 	pna := make([]int, 0, 2*N)
@@ -48,7 +48,7 @@ func arrayMethod(N int) {
 }
 
 // 预先生成范围内所有数存在list中，随机生成位置数，每获得一个数后将其删除
-func listMethod(N int) {
+func ListMethod(N int) {
 	tb := time.Now()
 	na := make([]int, 0, N)
 	pna := list.New()
@@ -71,7 +71,7 @@ func listMethod(N int) {
 }
 
 // 预先生成范围内所有数存在array中，随机生成位置数，每获得一个数后将与最后一位数交换
-func betterMethod(N int) {
+func BetterMethod(N int) {
 	tb := time.Now()
 	na := make([]int, 0, N)
 	pna := make([]int, 0, 2*N)
