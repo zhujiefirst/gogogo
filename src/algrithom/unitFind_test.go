@@ -3,6 +3,7 @@ package algrithom
 import (
 	"fmt"
 	"testing"
+	"time"
 )
 
 func TestUnitFind(*testing.T) {
@@ -39,14 +40,20 @@ func TestUnitFind(*testing.T) {
 	}
 
 	fmt.Println("Unit Find -- Quick Find begin ...")
+	tb := time.Now()
 	var uf UFI = new(UFQuickFind)
 	process(N, pairs, uf)
+	fmt.Printf("Unit Find -- Quick Find cost time: %v\n", time.Now().Sub(tb))
 
 	fmt.Println("Unit Find -- Quick Unit begin ...")
+	tb = time.Now()
 	uf = new(UFQuickUnit)
 	process(N, pairs, uf)
+	fmt.Printf("Unit Find -- Quick Find cost time: %v\n", time.Now().Sub(tb))
 
 	fmt.Println("Unit Find -- Weight Quick Unit begin ...")
+	tb = time.Now()
 	uf = new(UFWeightQuickUnit)
 	process(N, pairs, uf)
+	fmt.Printf("Unit Find -- Quick Find cost time: %v\n", time.Now().Sub(tb))
 }
