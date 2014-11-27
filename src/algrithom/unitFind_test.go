@@ -39,6 +39,10 @@ func TestUnitFind(*testing.T) {
 	}
 
 	fmt.Println("Unit Find -- Quick Find begin ...")
-	uf := new(UFQuickFind)
+	var uf UFI = new(UFQuickFind)
+	process(N, pairs, uf)
+
+	fmt.Println("Unit Find -- Quick Unit begin ...")
+	uf = new(UFQuickUnit)
 	process(N, pairs, uf)
 }
