@@ -17,16 +17,20 @@ type UF struct {
 	count int
 }
 
-type UFQuickFind struct {
-	UF
-}
-
-func (u *UFQuickFind) Init(n int) {
+func (u *UF) Init(n int) {
 	u.count = n
 	u.id = make([]int, 0, n)
 	for i := 0; i < n; i++ {
 		u.id = append(u.id, i)
 	}
+}
+
+func (u *UF) Count() int {
+	return u.count
+}
+
+type UFQuickFind struct {
+	UF
 }
 
 func (u *UFQuickFind) Unit(p int, q int) {
@@ -54,20 +58,8 @@ func (u *UFQuickFind) Connected(p int, q int) bool {
 	return u.Find(p) == u.Find(q)
 }
 
-func (u *UFQuickFind) Count() int {
-	return u.count
-}
-
 type UFQuickUnit struct {
 	UF
-}
-
-func (u *UFQuickUnit) Init(n int) {
-	u.count = n
-	u.id = make([]int, 0, n)
-	for i := 0; i < n; i++ {
-		u.id = append(u.id, i)
-	}
 }
 
 func (u *UFQuickUnit) Unit(p int, q int) {
@@ -91,8 +83,4 @@ func (u *UFQuickUnit) Find(p int) int {
 
 func (u *UFQuickUnit) Connected(p int, q int) bool {
 	return u.Find(p) == u.Find(q)
-}
-
-func (u *UFQuickUnit) Count() int {
-	return u.count
 }
