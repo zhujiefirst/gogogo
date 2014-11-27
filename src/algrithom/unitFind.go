@@ -4,12 +4,12 @@ import (
 // "fmt"
 )
 
-type UF struct {
+type UFQuickFind struct {
 	id    []int
 	count int
 }
 
-func (u *UF) Init(n int) {
+func (u *UFQuickFind) Init(n int) {
 	u.count = n
 	u.id = make([]int, 0, n)
 	for i := 0; i < n; i++ {
@@ -17,7 +17,7 @@ func (u *UF) Init(n int) {
 	}
 }
 
-func (u *UF) Unit(p int, q int) {
+func (u *UFQuickFind) Unit(p int, q int) {
 	pID := u.Find(p)
 	qID := u.Find(q)
 
@@ -34,14 +34,14 @@ func (u *UF) Unit(p int, q int) {
 	u.count--
 }
 
-func (u *UF) Find(p int) int {
+func (u *UFQuickFind) Find(p int) int {
 	return u.id[p]
 }
 
-func (u *UF) Connected(p int, q int) bool {
+func (u *UFQuickFind) Connected(p int, q int) bool {
 	return u.Find(p) == u.Find(q)
 }
 
-func (u *UF) Count() int {
+func (u *UFQuickFind) Count() int {
 	return u.count
 }

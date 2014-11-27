@@ -24,7 +24,8 @@ func TestUnitFind(*testing.T) {
 		{6, 7},
 	}
 
-	uf := new(UF)
+	fmt.Println("Unit Find -- Quick Find begin ...")
+	uf := new(UFQuickFind)
 	uf.Init(N)
 	for _, v := range pairs {
 		if uf.Connected(v.p, v.q) {
