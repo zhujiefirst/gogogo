@@ -6,11 +6,25 @@ import (
 )
 
 func TestUnitFind(*testing.T) {
-	N := 10
-	pairs := [11]struct {
+	type Pairs [11]struct {
 		p int
 		q int
-	}{
+	}
+
+	process := func(n int, pairs Pairs, uf UFI) {
+		uf.Init(n)
+		for _, v := range pairs {
+			if uf.Connected(v.p, v.q) {
+				fmt.Printf("[PASS] %v, %v\n", v.p, v.q)
+				continue
+			}
+			uf.Unit(v.p, v.q)
+			fmt.Printf("[CONN] %v, %v\n", v.p, v.q)
+		}
+	}
+
+	N := 10
+	pairs := Pairs{
 		{4, 3},
 		{3, 8},
 		{6, 5},
@@ -26,13 +40,5 @@ func TestUnitFind(*testing.T) {
 
 	fmt.Println("Unit Find -- Quick Find begin ...")
 	uf := new(UFQuickFind)
-	uf.Init(N)
-	for _, v := range pairs {
-		if uf.Connected(v.p, v.q) {
-			fmt.Printf("[PASS] %v, %v\n", v.p, v.q)
-			continue
-		}
-		uf.Unit(v.p, v.q)
-		fmt.Printf("[CONN] %v, %v\n", v.p, v.q)
-	}
+	process(N, pairs, uf)
 }

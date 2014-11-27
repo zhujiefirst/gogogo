@@ -4,9 +4,21 @@ import (
 // "fmt"
 )
 
-type UFQuickFind struct {
+type UFI interface {
+	Init(n int)
+	Unit(p int, q int)
+	Find(p int) int
+	Connected(p int, q int) bool
+	Count() int
+}
+
+type UF struct {
 	id    []int
 	count int
+}
+
+type UFQuickFind struct {
+	UF
 }
 
 func (u *UFQuickFind) Init(n int) {
