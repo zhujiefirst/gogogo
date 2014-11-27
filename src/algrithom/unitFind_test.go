@@ -45,4 +45,8 @@ func TestUnitFind(*testing.T) {
 	fmt.Println("Unit Find -- Quick Unit begin ...")
 	uf = new(UFQuickUnit)
 	process(N, pairs, uf)
+
+	fmt.Println("Unit Find -- Weight Quick Unit begin ...")
+	uf = new(UFWeightQuickUnit)
+	process(N, pairs, uf)
 }
