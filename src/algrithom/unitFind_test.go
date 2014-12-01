@@ -15,7 +15,7 @@ func TestUnitFind(*testing.T) {
 	process := func(n int, pairs Pairs, uf UFI) {
 		uf.Init(n)
 		for _, v := range pairs {
-			if uf.Connected(v.p, v.q) {
+			if uf.Connected(uf.Find, v.p, v.q) {
 				fmt.Printf("[PASS] %v, %v\n", v.p, v.q)
 				continue
 			}

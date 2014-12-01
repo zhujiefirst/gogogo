@@ -4,11 +4,13 @@ import (
 // "fmt"
 )
 
+type FindFunc func(int) int
+
 type UFI interface {
 	Init(n int)
 	Unit(p int, q int)
 	Find(p int) int
-	Connected(p int, q int) bool
+	Connected(find FindFunc, p int, q int) bool
 	Count() int
 }
 
@@ -27,6 +29,10 @@ func (u *UF) Init(n int) {
 
 func (u *UF) Count() int {
 	return u.count
+}
+
+func (u *UF) Connected(find FindFunc, p int, q int) bool {
+	return find(p) == find(q)
 }
 
 type UFQuickFind struct {
@@ -54,10 +60,6 @@ func (u *UFQuickFind) Find(p int) int {
 	return u.id[p]
 }
 
-func (u *UFQuickFind) Connected(p int, q int) bool {
-	return u.Find(p) == u.Find(q)
-}
-
 type UFQuickUnit struct {
 	UF
 }
@@ -79,10 +81,6 @@ func (u *UFQuickUnit) Find(p int) int {
 		p = u.id[p]
 	}
 	return p
-}
-
-func (u *UFQuickUnit) Connected(p int, q int) bool {
-	return u.Find(p) == u.Find(q)
 }
 
 type UFWeightQuickUnit struct {
@@ -123,8 +121,4 @@ func (u *UFWeightQuickUnit) Find(p int) int {
 		p = u.id[p]
 	}
 	return p
-}
-
-func (u *UFWeightQuickUnit) Connected(p int, q int) bool {
-	return u.Find(p) == u.Find(q)
 }
