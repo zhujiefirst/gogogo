@@ -70,7 +70,7 @@ func (u *UFQuickUnit) Unit(p int, q int) {
 		return
 	}
 
-	u.id[p] = qRoot
+	u.id[pRoot] = qRoot
 	u.count--
 }
 
