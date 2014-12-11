@@ -2,17 +2,22 @@ package sort
 
 import (
 	"fmt"
+	// "reflect"
 )
 
 type BaseSort struct {
+	compareCount int
+	exchCount    int
 }
 
 func (this *BaseSort) less(lhs Comparable, rhs Comparable, compare Compare) bool {
+	this.compareCount++
 	return compare(lhs, rhs) < 0
 }
 
 func (this *BaseSort) exch(a []Comparable, i int, j int) {
-	t := a[i]
+	this.exchCount++
+	t := a[j]
 	a[j] = a[i]
 	a[i] = t
 }

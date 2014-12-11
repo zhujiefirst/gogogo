@@ -1,6 +1,7 @@
 package sort
 
 import (
+	"fmt"
 	"math/rand"
 	"testing"
 )
@@ -29,6 +30,9 @@ func genRandom(n int) []Comparable {
 func TestSort(*testing.T) {
 	c := genRandom(10)
 
-	sort := new(BaseSort)
+	sort := new(SelectSort)
 	sort.Show(c)
+	sort.Sort(c, compareTo)
+	sort.Show(c)
+	fmt.Printf("compare count=%v, exch count=%v\n", sort.compareCount, sort.exchCount)
 }
