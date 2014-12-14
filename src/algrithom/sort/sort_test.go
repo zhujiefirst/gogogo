@@ -34,16 +34,12 @@ func TestSort(*testing.T) {
 	n := 10
 	var c = make([]Comparable, n)
 	var cc []Comparable
-	var selectSort *SelectSort
-	var insertionSort *InsertionSort
-	var shellSort *ShellSort
-	var bubbleSort *BubbleSort
 
 	cc = genRandom(n)
 
 	selectSortAl := func() {
 		copy(c[0:], cc[0:])
-		selectSort = new(SelectSort)
+		selectSort := new(SelectSort)
 		fmt.Println("before select sort...")
 		selectSort.Show(c)
 		selectSort.Sort(c, compareTo)
@@ -54,7 +50,7 @@ func TestSort(*testing.T) {
 
 	insertionSortAl := func() {
 		copy(c, cc)
-		insertionSort = new(InsertionSort)
+		insertionSort := new(InsertionSort)
 		fmt.Println("before insertion sort...")
 		insertionSort.Show(c)
 		insertionSort.Sort(c, compareTo)
@@ -65,7 +61,7 @@ func TestSort(*testing.T) {
 
 	shellSortAl := func() {
 		copy(c, cc)
-		shellSort = new(ShellSort)
+		shellSort := new(ShellSort)
 		fmt.Println("before shell sort...")
 		shellSort.Show(c)
 		shellSort.Sort(c, compareTo)
@@ -76,7 +72,7 @@ func TestSort(*testing.T) {
 
 	bubbleSortAl := func() {
 		copy(c, cc)
-		bubbleSort = new(BubbleSort)
+		bubbleSort := new(BubbleSort)
 		fmt.Println("before bubble sort...")
 		bubbleSort.Show(c)
 		bubbleSort.Sort(c, compareTo)
@@ -85,8 +81,22 @@ func TestSort(*testing.T) {
 		fmt.Printf("for bubble sort, compare count=%v, exch count=%v\n", bubbleSort.compareCount, bubbleSort.exchCount)
 	}
 
-	selectSortAl()
-	insertionSortAl()
-	shellSortAl()
-	bubbleSortAl()
+	mergeSortAl := func() {
+		copy(c, cc)
+		mergeSort := new(MergeSort)
+		fmt.Println("before merge sort...")
+		mergeSort.Show(c)
+		mergeSort.Sort(c, compareTo)
+		fmt.Println("after merge sort...")
+		mergeSort.Show(c)
+		fmt.Printf("for merge sort, compare count=%v, exch count=%v\n", mergeSort.compareCount, mergeSort.exchCount)
+	}
+
+	if true {
+		selectSortAl()
+		insertionSortAl()
+		shellSortAl()
+		bubbleSortAl()
+		mergeSortAl()
+	}
 }
