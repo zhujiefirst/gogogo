@@ -37,6 +37,7 @@ func TestSort(*testing.T) {
 	var selectSort *SelectSort
 	var insertionSort *InsertionSort
 	var shellSort *ShellSort
+	var bubbleSort *BubbleSort
 
 	cc = genRandom(n)
 
@@ -66,4 +67,13 @@ func TestSort(*testing.T) {
 	fmt.Println("after shell sort...")
 	shellSort.Show(c)
 	fmt.Printf("for shell sort, compare count=%v, exch count=%v\n", shellSort.compareCount, shellSort.exchCount)
+
+	copy(c, cc)
+	bubbleSort = new(BubbleSort)
+	fmt.Println("before bubble sort...")
+	bubbleSort.Show(c)
+	bubbleSort.Sort(c, compareTo)
+	fmt.Println("after bubble sort...")
+	bubbleSort.Show(c)
+	fmt.Printf("for bubble sort, compare count=%v, exch count=%v\n", bubbleSort.compareCount, bubbleSort.exchCount)
 }
