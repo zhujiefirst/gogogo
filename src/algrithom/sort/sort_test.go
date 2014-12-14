@@ -2,7 +2,7 @@ package sort
 
 import (
 	"fmt"
-	// "math/rand"
+	"math/rand"
 	"testing"
 )
 
@@ -22,9 +22,9 @@ func compareTo(lhs Comparable, rhs Comparable) int {
 func genRandom(n int) []Comparable {
 	var a []Comparable
 	for i := 0; i < n; i++ {
-		// e := rand.Int() % (2 * n)
+		e := rand.Int() % (2 * n)
 		// e := i
-		e := n - i
+		// e := n - i
 		a = append(a, e)
 	}
 	return a
@@ -36,6 +36,7 @@ func TestSort(*testing.T) {
 	var cc []Comparable
 	var selectSort *SelectSort
 	var insertionSort *InsertionSort
+	var shellSort *ShellSort
 
 	cc = genRandom(n)
 
@@ -56,4 +57,13 @@ func TestSort(*testing.T) {
 	fmt.Println("after insertion sort...")
 	insertionSort.Show(c)
 	fmt.Printf("for insertion sort, compare count=%v, exch count=%v\n", insertionSort.compareCount, insertionSort.exchCount)
+
+	copy(c, cc)
+	shellSort = new(ShellSort)
+	fmt.Println("before shell sort...")
+	shellSort.Show(c)
+	shellSort.Sort(c, compareTo)
+	fmt.Println("after shell sort...")
+	shellSort.Show(c)
+	fmt.Printf("for shell sort, compare count=%v, exch count=%v\n", shellSort.compareCount, shellSort.exchCount)
 }
