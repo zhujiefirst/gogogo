@@ -31,7 +31,7 @@ func genRandom(n int) []Comparable {
 }
 
 func TestSort(*testing.T) {
-	n := 10
+	n := 16
 	var c = make([]Comparable, n)
 	var cc []Comparable
 
