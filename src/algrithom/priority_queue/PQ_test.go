@@ -20,6 +20,7 @@ func TestPQ(*testing.T) {
 	}
 
 	arrayPQAl := func() {
+		fmt.Println("-- arrayPQ --")
 		arrayPQ := new(ArrayPQ)
 		arrayPQ.Init(nil, compare)
 		arrayPQ.Insert(10)
@@ -33,6 +34,7 @@ func TestPQ(*testing.T) {
 	}
 
 	heapPQAl := func() {
+		fmt.Println("-- heapPQ --")
 		heapPQ := new(HeapPQ)
 		heapPQ.Init(nil, compare)
 		heapPQ.Insert(10)
