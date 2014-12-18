@@ -1,7 +1,7 @@
 package priority_queue
 
 import (
-// "fmt"
+	"fmt"
 )
 
 type ArrayPQ struct {
@@ -10,11 +10,12 @@ type ArrayPQ struct {
 }
 
 func (this *ArrayPQ) Init(keys []Comparable, comp Compare) {
+	this.vals = make([]Comparable, 0)
+
 	if keys == nil {
-		this.vals = make([]Comparable, 0)
-	} else {
-		this.vals = make([]Comparable, len(keys))
-		copy(this.vals, keys)
+		for i := 0; i < len(keys); i++ {
+			this.Insert(keys[i])
+		}
 	}
 
 	this.compare = comp
@@ -22,13 +23,12 @@ func (this *ArrayPQ) Init(keys []Comparable, comp Compare) {
 
 func (this *ArrayPQ) Insert(key Comparable) {
 	this.vals = append(this.vals, key)
-	var maxIdx = this.Size() - 1
-	for i := 0; i < this.Size()-1; i++ {
-		if this.less(this.vals[maxIdx], this.vals[i]) {
-			maxIdx = i
+	for i := this.Size() - 1; i > 0; i-- {
+		if this.less(this.vals[i], this.vals[i-1]) {
+			this.exch(i, i-1)
 		}
 	}
-	this.exch(maxIdx, this.Size()-1)
+	fmt.Println(this.vals)
 }
 
 func (this *ArrayPQ) Max() Comparable {
@@ -63,7 +63,7 @@ func (this *ArrayPQ) less(lhs Comparable, rhs Comparable) bool {
 }
 
 func (this *ArrayPQ) exch(lhsIdx int, rhsIdx int) {
-	if lhsIdx == rhsIdx {
+	if lhsIdx < 0 || rhsIdx < 0 || lhsIdx == rhsIdx {
 		return
 	}
 

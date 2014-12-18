@@ -25,11 +25,26 @@ func TestPQ(*testing.T) {
 		arrayPQ.Insert(10)
 		arrayPQ.Insert(1)
 		arrayPQ.Insert(13)
-		arrayPQ.Insert(12)
+		arrayPQ.Insert(3)
+		arrayPQ.Insert(2)
 		fmt.Printf("Max value expect=13, actul=%v\n", arrayPQ.DelMax())
-		fmt.Printf("Max value expect=12, actul=%v\n", arrayPQ.Max())
-		fmt.Printf("PQ's size expect=3, actul=%v\n", arrayPQ.Size())
+		fmt.Printf("Max value expect=10, actul=%v\n", arrayPQ.Max())
+		fmt.Printf("PQ's size expect=4, actul=%v\n", arrayPQ.Size())
+	}
+
+	heapPQAl := func() {
+		heapPQ := new(HeapPQ)
+		heapPQ.Init(nil, compare)
+		heapPQ.Insert(10)
+		heapPQ.Insert(1)
+		heapPQ.Insert(13)
+		heapPQ.Insert(3)
+		heapPQ.Insert(2)
+		fmt.Printf("Max value expect=13, actul=%v\n", heapPQ.DelMax())
+		fmt.Printf("Max value expect=10, actul=%v\n", heapPQ.Max())
+		fmt.Printf("PQ's size expect=4, actul=%v\n", heapPQ.Size())
 	}
 
 	arrayPQAl()
+	heapPQAl()
 }
