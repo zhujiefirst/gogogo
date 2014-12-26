@@ -32,7 +32,7 @@ func genRandom(n int) []Comparable {
 }
 
 func TestSort(*testing.T) {
-	n := 100000
+	n := 10000
 	var c = make([]Comparable, n)
 	var cc []Comparable
 
@@ -112,6 +112,18 @@ func TestSort(*testing.T) {
 		fmt.Printf("for quick sort, compare count=%v, exch count=%v, expend=%v\n", quickSort.compareCount, quickSort.exchCount, time.Now().Sub(tb))
 	}
 
+	heapSortAl := func() {
+		tb = time.Now()
+		copy(c, cc)
+		heapSort := new(HeapSort)
+		fmt.Println("before heap sort...")
+		heapSort.Show(c)
+		heapSort.Sort(c, compareTo)
+		fmt.Println("after heap sort...")
+		heapSort.Show(c)
+		fmt.Printf("for heap sort, compare count=%v, exch count=%v, expend=%v\n", heapSort.compareCount, heapSort.exchCount, time.Now().Sub(tb))
+	}
+
 	if true {
 		selectSortAl()
 		insertionSortAl()
@@ -121,5 +133,6 @@ func TestSort(*testing.T) {
 		quickSortAl(1)
 		quickSortAl(2)
 		quickSortAl(3)
+		heapSortAl()
 	}
 }
