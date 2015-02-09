@@ -98,4 +98,31 @@ func TestBinarySearch(t *testing.T) {
 	if bst.Rank("3") != 2 {
 		t.Errorf("[EXCEPT]=2\t[FACTOR]=%v", bst.Rank("3"))
 	}
+
+	// delete min elem
+	bst.DeleteMin()
+
+	if bst.Size() != 3 {
+		t.Errorf("[EXCEPT]=3\t[FACTOR]=%v", bst.Size())
+	}
+
+	// get elem which not exist
+	node = bst.Get("1")
+	if node != nil {
+		t.Errorf("[EXCEPT]=nil\t[FACTOR]=%v", bst.Get("1"))
+	}
+
+	// get elem which key=2
+	node = bst.Get("2")
+	if node == nil || node.value != "second_value" {
+		t.Errorf("[EXCEPT]=second_value\t[FACTOR]=%v", bst.Get("2"))
+	}
+
+	// delete max elem
+	bst.DeleteMax()
+
+	if bst.Size() != 2 {
+		t.Errorf("[EXCEPT]=2\t[FACTOR]=%v", bst.Size())
+	}
+
 }

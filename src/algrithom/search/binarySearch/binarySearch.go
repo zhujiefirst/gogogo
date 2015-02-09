@@ -228,6 +228,34 @@ func (this *BST) rank(n *Node, key Key) int {
 	return 0
 }
 
+func (this *BST) DeleteMin() {
+	this.root = this.deleteMin(this.root)
+}
+
+func (this *BST) deleteMin(n *Node) *Node {
+	if n.left == nil {
+		return n.right
+	} else {
+		n.left = this.deleteMin(n.left)
+		n.N = this.size(n.left) + this.size(n.right) + 1
+		return n
+	}
+}
+
+func (this *BST) DeleteMax() {
+	this.root = this.deleteMax(this.root)
+}
+
+func (this *BST) deleteMax(n *Node) *Node {
+	if n.right == nil {
+		return n.left
+	} else {
+		n.right = this.deleteMax(n.right)
+		n.N = this.size(n.left) + this.size(n.right) + 1
+		return n
+	}
+}
+
 func New() *BST {
 	return &BST{}
 }
