@@ -1,7 +1,7 @@
 package binarySearch
 
 import (
-// "fmt"
+	"fmt"
 )
 
 type Key string
@@ -254,6 +254,44 @@ func (this *BST) deleteMax(n *Node) *Node {
 		n.N = this.size(n.left) + this.size(n.right) + 1
 		return n
 	}
+}
+
+// func (this *BST) Delete(key Key) {
+
+// }
+
+// func (this *BST) delete(n *Node, key Key) {
+// 	if n.key == key {
+// 		node := this.min(n.right)
+// 		this.deleteMin(n.right)
+// 		node.left = n.left
+// 		node.right = n.right
+// 		return node
+// 	}
+
+// 	return node
+// }
+
+type show func(*Node)
+
+func (this *BST) Show() {
+	this.Travel(func(n *Node) {
+		fmt.Printf("n.key=%v, n.value=%v, n.N=%v\n", n.key, n.value, n.N)
+	})
+}
+
+func (this *BST) Travel(f show) {
+	this.travel(this.root, f)
+}
+
+func (this *BST) travel(n *Node, f show) {
+	if n == nil {
+		return
+	}
+
+	this.travel(n.left, f)
+	f(n)
+	this.travel(n.right, f)
 }
 
 func New() *BST {
