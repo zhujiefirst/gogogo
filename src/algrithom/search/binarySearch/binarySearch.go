@@ -256,42 +256,68 @@ func (this *BST) deleteMax(n *Node) *Node {
 	}
 }
 
-// func (this *BST) Delete(key Key) {
+func (this *BST) Delete(key Key) {
+	this.root = this.delete(this.root, key)
+}
 
-// }
+func (this *BST) delete(n *Node, key Key) *Node {
+	if n == nil {
+		return nil
+	}
 
-// func (this *BST) delete(n *Node, key Key) {
-// 	if n.key == key {
-// 		node := this.min(n.right)
-// 		this.deleteMin(n.right)
-// 		node.left = n.left
-// 		node.right = n.right
-// 		return node
-// 	}
+	if n.key > key {
+		n.left = this.delete(n.left, key)
+	} else if n.key < key {
+		n.right = this.delete(n.right, key)
+	} else {
+		if n.left == nil {
+			return n.right
+		}
+		if n.right == nil {
+			return n.left
+		}
+		node := n
+		n = this.min(n.right)
+		n.right = this.deleteMin(n.right)
+		n.left = node.left
+	}
 
-// 	return node
-// }
+	n.N = this.size(n.left) + this.size(n.right) + 1
+
+	return n
+}
 
 type show func(*Node)
 
-func (this *BST) Show() {
+func (this *BST) Show(sort string) {
 	this.Travel(func(n *Node) {
 		fmt.Printf("n.key=%v, n.value=%v, n.N=%v\n", n.key, n.value, n.N)
-	})
+	}, sort)
 }
 
-func (this *BST) Travel(f show) {
-	this.travel(this.root, f)
+func (this *BST) Travel(f show, sort string) {
+	this.travel(this.root, f, sort)
 }
 
-func (this *BST) travel(n *Node, f show) {
+func (this *BST) travel(n *Node, f show, sort string) {
 	if n == nil {
 		return
 	}
 
-	this.travel(n.left, f)
-	f(n)
-	this.travel(n.right, f)
+	switch sort {
+	case "in-order":
+		this.travel(n.left, f, sort)
+		f(n)
+		this.travel(n.right, f, sort)
+	case "pre-order":
+		f(n)
+		this.travel(n.left, f, sort)
+		this.travel(n.right, f, sort)
+	case "post-order":
+		this.travel(n.left, f, sort)
+		this.travel(n.right, f, sort)
+		f(n)
+	}
 }
 
 func New() *BST {

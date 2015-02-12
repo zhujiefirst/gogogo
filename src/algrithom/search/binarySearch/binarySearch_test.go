@@ -67,6 +67,8 @@ func TestBinarySearch(t *testing.T) {
 		t.Errorf("[EXCEPT]=4\t[FACTOR]=%v", bst.Size())
 	}
 
+	// bst.Show()
+
 	if bst.Floor("4") != "3" {
 		t.Errorf("[EXCEPT]=3\t[FACTOR]=%v", bst.Floor("4"))
 	}
@@ -125,4 +127,12 @@ func TestBinarySearch(t *testing.T) {
 		t.Errorf("[EXCEPT]=2\t[FACTOR]=%v", bst.Size())
 	}
 
+	// add some elem
+	bst.Put("1", "first_value")
+	bst.Put("9", "nine_value")
+	bst.Put("5", "five_value")
+	bst.Put("6", "six_value")
+	bst.Put("8", "eight_value")
+	bst.Put("4", "four_value")
+	bst.Show("pre-order")
 }
