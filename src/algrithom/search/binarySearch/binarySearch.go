@@ -278,7 +278,7 @@ func (this *BST) delete(n *Node, key Key) *Node {
 		}
 		node := n
 		n = this.min(n.right)
-		n.right = this.deleteMin(n.right)
+		n.right = this.deleteMin(n)
 		n.left = node.left
 	}
 

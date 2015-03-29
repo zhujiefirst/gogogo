@@ -134,5 +134,9 @@ func TestBinarySearch(t *testing.T) {
 	bst.Put("6", "six_value")
 	bst.Put("8", "eight_value")
 	bst.Put("4", "four_value")
+	// bst.Show("pre-order")
+
+	// delete
+	bst.Delete("2")
 	bst.Show("pre-order")
 }
